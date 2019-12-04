@@ -1,0 +1,176 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.diffplug.gradle.spotless'
+apply plugin: 'kotlin-kapt'
+// TODO: un comment below plug which you are using in your app
+//apply plugin: 'io.fabric'
+//apply plugin: 'com.google.firebase.appdistribution'
+//apply plugin: "androidx.navigation.safeargs.kotlin"
+
+spotless {
+    kotlin {
+        target("**/*.kt")
+        ktlint()
+        // TODO: update your copy right content in copyright.kt file
+        licenseHeaderFile("../settings/spotless/copyright.kt")
+    }
+}
+android {
+
+    compileSdkVersion buildVersion.compileSdkVersion
+    defaultConfig {
+        applicationId "com.simform.androidstartertemplate"
+        minSdkVersion buildVersion.minSdkVersion
+        targetSdkVersion buildVersion.targetSdkVersion
+        versionCode appVesion.versionCode
+        versionName appVesion.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    dataBinding {
+        enabled true
+    }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    flavorDimensions "default"
+
+    productFlavors {
+        String baseUrlStage = "BASE_URL_STAGE"
+        String baseUrlLive = "BASE_URL_LIVE"
+        development {
+            versionCode 1
+            versionName "1.0-development"
+            dimension "default"
+            it.buildConfigField "String", "API_BASE_URL", "\"${project.properties[baseUrlStage]}\""
+        }
+        qa {
+            versionCode 1
+            versionName "1.0-qa"
+            dimension "default"
+            it.buildConfigField "String", "API_BASE_URL", "\"${project.properties[baseUrlStage]}\""/*
+            // setting for FireBase AppDistribution
+            firebaseAppDistribution {
+                releaseNotesFile = "$projectDir/app_release/internal/release_note"
+                testersFile = "$projectDir/app_release/internal/release_emails"
+                groupsFile = "$projectDir/app_release/internal/release_groups"
+            }*/
+        }
+        client {
+            versionCode 1
+            versionName "1.0-client"
+            dimension "default"
+            it.buildConfigField "String", "API_BASE_URL", "\"${project.properties[baseUrlStage]}\""
+        }
+        production {
+            versionCode 1
+            versionName "1.0-prod"
+            dimension "default"
+            it.buildConfigField "String", "API_BASE_URL", "\"${project.properties[baseUrlLive]}\""
+        }
+    }
+
+    signingConfigs {
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+            storeFile file("$project.rootDir/settings/keystore/debug.keystore")
+        }
+        release {
+            // TODO: Update you release key detials here
+            keyAlias ''
+            keyPassword ''
+            storePassword ''
+            storeFile file("$project.rootDir/settings/keystore/debug.keystore")
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }.manifestPlaceholders["enableCrashReporting"] = true
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }.manifestPlaceholders["enableCrashReporting"] = false
+    }
+}
+final roomSchemaDir = "$projectDir/roomSchemas"
+kapt {
+    mapDiagnosticLocations = true
+    arguments {
+        arg("room.schemaLocation", roomSchemaDir)
+    }
+}
+dependencies {
+    // TODO: Check you require dependencies and remove which are not require
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation deps.support.appCompat
+    implementation deps.support.corektx
+    implementation deps.support.constraintlayout
+    implementation deps.support.material
+    implementation deps.support.timber
+
+    implementation deps.firebase.firebaseCrashlytics
+    // Koin
+    implementation deps.koin.koinAndroid
+    implementation deps.koin.koinViewmodel
+
+    // calligraphy for custom font
+    implementation deps.callyGrapy.calligraphy3
+    implementation deps.callyGrapy.viewpump
+
+    // Jetpack libs
+    implementation deps.arch.lifeCycle
+    implementation deps.arch.viewModelKtx
+    implementation deps.arch.lifeCycleKtx
+    implementation deps.arch.liveDataKtx
+
+    // Navigation UI
+    /*implementation deps.navigation.navigationUI
+    implementation deps.navigation.navigationUIKtx
+    implementation deps.navigation.navigationFragment
+    implementation deps.navigation.navigationFragmentKtx*/
+
+    // ROOM
+    implementation deps.arch.room
+    implementation deps.arch.roomKtx
+    kapt deps.arch.roomCompiler
+
+    // SSP and SDP for font size
+    implementation deps.intuit.sdp
+    implementation deps.intuit.ssp
+
+    // For basic extension functions
+    //implementation deps.birju.bext
+
+    // Glide for image loading
+    implementation deps.image.glide
+    kapt deps.image.glideProcessor
+
+    // Retrofit
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.coroutineAdapter
+    implementation deps.retrofit.gsonConverter
+    implementation deps.retrofit.gson
+    implementation deps.retrofit.loggingInterceptor
+
+    implementation deps.other.buttonLib
+    implementation deps.other.alerter
+
+    // Android Coroutine
+    implementation deps.coroutines.androidCoroutine
+}
+ // TODO: un comment when you are using play service in your app
+//apply plugin: 'com.google.gms.google-services'

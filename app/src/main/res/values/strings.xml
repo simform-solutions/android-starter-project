@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">AndroidStarterTemplate</string>
+    <string name="str_email">Email</string>
+    <string name="str_email_forgot">Enter Email Address</string>
+    <string name="str_password">Password</string>
+    <string name="str_login">Login</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="str_no_account">Don\'t have an account?</string>
+    <string name="str_sign_up">Sign up</string>
+    <string name="error_msg_email">Please provide email address.</string>
+    <string name="error_msg_email_valid">Please provide valid email address.</string>
+    <string name="error_msg_password_login">Please provide password.</string>
+
+</resources>

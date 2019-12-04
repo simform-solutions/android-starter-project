@@ -1,0 +1,135 @@
+ext.deps = [:]
+
+ext.appVesion = [
+        versionCode: 1,
+        versionName: "1.0.0"
+]
+ext.buildVersion = [
+        compileSdkVersion: 29,
+        minSdkVersion    : 21,
+        targetSdkVersion : 29,
+        buildTools       : "28.0.3"
+]
+//Gradle version
+ext.versions = [
+        appcompat         : "1.1.0",
+        corektx           : "1.0.2",
+        constraintlayout  : "1.1.3",
+        material          : "1.0.0",
+        cameraX           : "1.0.0-alpha04",
+        archVersion       : "2.1.0",
+        koin_version      : '2.0.1',
+        fragment          : '1.1.0-alpha07',
+        activity          : '1.0.0-alpha07',
+        coil              : '0.6.1',
+        firebaseVision    : '23.0.0',
+        firebaseCrash     : '2.10.1',
+        callyGrapy        : '3.1.1',
+        viewPump          : '2.0.3',
+        kotlinCoroutines  : "1.0.1",
+        lifeCycle         : "2.2.0-alpha05",
+        sdp               : "1.0.6",
+        ssp               : "1.0.6",
+        coroutine         : "1.3.2",
+        bext              : "2.1.0",
+        retrofit          : "2.6.0",
+        coroutineAdapter  : "0.9.2",
+        rxAdapter         : "2.5.0",
+        gson              : "2.8.5",
+        gsonConverter     : "2.5.0",
+        navigation        : "2.1.0",
+        loggingInterceptor: "3.12.0",
+        timber            : "4.7.1",
+        buttonLib         : "2.1.5",
+        alerter           : "4.0.0",
+        roomVersion       : "2.2.0",
+        glide             : "4.10.0"
+
+]
+
+
+deps.support = [
+        appCompat       : "androidx.appcompat:appcompat:$versions.appcompat",
+        corektx         : "androidx.core:core-ktx:$versions.corektx",
+        constraintlayout: "androidx.constraintlayout:constraintlayout:$versions.constraintlayout",
+        material        : "com.google.android.material:material:$versions.material",
+        cameraXCore     : "androidx.camera:camera-core:$versions.cameraX",
+        cameraXCamera2  : "androidx.camera:camera-camera2:$versions.cameraX",
+        timber          : "com.jakewharton.timber:timber:$versions.timber"
+]
+deps.androidx = [
+        activity: "androidx.activity:activity:$versions.activity",
+        fragment: "androidx.fragment:fragment:$versions.fragment",
+]
+deps.arch = [
+        viewModel      : "androidx.lifecycle:lifecycle-viewmodel:$versions.archVersion",
+        viewModelKtx   : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.archVersion",
+        liveDataKtx    : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.archVersion",
+        lifeCycle      : "androidx.lifecycle:lifecycle-runtime:$versions.lifeCycle",
+        lifeCycleKtx   : "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifeCycle",
+        reactiveStreams: "androidx.lifecycle:lifecycle-reactivestreams:$versions.archVersion",
+        extensions     : "androidx.lifecycle:lifecycle-extensions:$versions.archVersion",
+        room           : "androidx.room:room-runtime:$versions.roomVersion",
+        roomKtx        : "androidx.room:room-ktx:$versions.roomVersion",
+        roomCompiler   : "androidx.room:room-compiler:$versions.roomVersion",
+        roomCorutine   : "androidx.room:room-coroutines:$versions.roomVersion"
+]
+
+deps.koin = [
+        koinAndroid  : "org.koin:koin-android:$versions.koin_version",
+        koinViewModel: "org.koin:koin-androidx-viewmodel:$versions.koin_version"
+]
+deps.image = [
+        coil: "io.coil-kt:coil:$versions.coil",
+        glide: "com.github.bumptech.glide:glide:$versions.glide",
+        glideProcessor: "com.github.bumptech.glide:compiler:$versions.glide"
+]
+
+deps.firebase = [
+        firebaseMLVision   : "com.google.firebase:firebase-ml-vision:$versions.firebaseVision",
+        firebaseCrashlytics: "com.crashlytics.sdk.android:crashlytics:$versions.firebaseCrash"
+]
+deps.koin = [
+        koinCore     : "org.koin:koin-core:$versions.koin_version",
+        koinAndroid  : "org.koin:koin-android:$versions.koin_version",
+        koinViewmodel: "org.koin:koin-androidx-viewmodel:$versions.koin_version",
+        koinScope    : "org.koin:koin-androidx-scope:$versions.koin_version"
+]
+deps.callyGrapy = [
+        calligraphy3: "io.github.inflationx:calligraphy3:$versions.callyGrapy",
+        viewpump    : "io.github.inflationx:viewpump:$versions.viewPump"
+]
+
+deps.intuit = [
+        sdp: "com.intuit.sdp:sdp-android:$versions.sdp",
+        ssp: "com.intuit.ssp:ssp-android:$versions.ssp"
+]
+
+deps.coroutines = [
+        androidCoroutine: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutine"
+]
+
+deps.birju = [
+        bext: "com.github.BirjuVachhani.bext:bext-core:$versions.bext"
+]
+
+deps.retrofit = [
+        retrofit          : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+        coroutineAdapter  : "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${versions.coroutineAdapter}",
+        rxAdapter         : "com.squareup.retrofit2:adapter-rxjava2:${versions.rxAdapter}",
+        gsonConverter     : "com.squareup.retrofit2:converter-gson:${versions.gsonConverter}",
+        gson              : "com.google.code.gson:gson:${versions.gsonConverter}",
+        loggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${versions.loggingInterceptor}"
+]
+
+deps.navigation = [
+        navigationUI         : "androidx.navigation:navigation-ui:${versions.navigation}",
+        navigationUIKtx      : "androidx.navigation:navigation-ui-ktx:${versions.navigation}",
+        navigationFragment   : "androidx.navigation:navigation-fragment:${versions.navigation}",
+        navigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
+]
+
+deps.other = [
+        buttonLib: "br.com.simplepass:loading-button-android:${versions.buttonLib}",
+        alerter  : "com.tapadoo.android:alerter:${versions.alerter}"
+]

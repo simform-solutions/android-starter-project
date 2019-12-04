@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="LoginActivityBinding">
+
+        <variable
+            name="viewModel"
+            type="com.simform.androidstartertemplate.view.login.LoginViewModel" />
+
+        <variable
+            name="state"
+            type="com.simform.androidstartertemplate.state.LoginState" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewAppName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_18sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextEmail"
+                style="@style/PrimaryEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_26sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_26sdp"
+                android:drawablePadding="@dimen/_8sdp"
+                android:hint="@string/str_email"
+                android:imeOptions="actionNext"
+                android:lines="1"
+                android:maxLength="256"
+                android:maxLines="1"
+                android:text="@={state.emailLiveData}"
+                app:layout_constraintTop_toBottomOf="@id/textViewAppName"
+
+
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_26sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_26sdp"
+                android:textColorHint="@color/colorHint"
+                app:hintEnabled="false"
+                app:layout_constraintTop_toBottomOf="@id/editTextEmail"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorHint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPassword"
+                    style="@style/PrimaryEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:hint="@string/str_password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:maxLength="26"
+                    android:maxLines="1"
+                    android:text="@={state.passwordLiveData}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewForgotPassword"
+                fontPath="fonts/gilroy_medium.otf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:onClick="@{v->viewModel.onForgotClick()}"
+                android:padding="@dimen/_4sdp"
+                android:text="@string/forgot_your_password"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/textInputPassword"
+                app:layout_constraintTop_toBottomOf="@id/textInputPassword" />
+
+
+            <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+                android:id="@+id/buttonLogin"
+                style="@style/RoundedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:onClick="@{v->viewModel.onLoginClick()}"
+                android:text="@string/str_login"
+                app:layout_constraintEnd_toEndOf="@id/editTextEmail"
+                app:layout_constraintStart_toStartOf="@id/editTextEmail"
+                app:layout_constraintTop_toBottomOf="@id/textViewForgotPassword" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:gravity="center|center_horizontal"
+                app:layout_constraintTop_toBottomOf="@id/buttonLogin">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewNoAccount"
+                    fontPath="fonts/gilroy_medium.otf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/_4sdp"
+                    android:paddingTop="@dimen/_4sdp"
+                    android:paddingBottom="@dimen/_4sdp"
+                    android:text="@string/str_no_account"
+                    android:textColor="@color/color_text_sec"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="@id/editTextEmail"
+                    app:layout_constraintTop_toBottomOf="@id/buttonLogin" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewSignUp"
+                    fontPath="fonts/gilroy_bold.otf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:onClick="@{v->viewModel.onSignUpClick()}"
+                    android:paddingTop="@dimen/_4sdp"
+                    android:paddingEnd="@dimen/_4sdp"
+                    android:paddingBottom="@dimen/_4sdp"
+                    android:text="@string/str_sign_up"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toEndOf="@id/textViewNoAccount"
+                    app:layout_constraintTop_toBottomOf="@id/buttonLogin" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
